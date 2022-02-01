@@ -2,7 +2,7 @@ import { Command, Flags } from "@oclif/core";
 import { Octokit } from "@octokit/rest";
 import fs from "fs";
 import inquirer from "inquirer";
-import { Submodule } from "../../../../../once.ts/dist/current/src/unsorted/Submodule.js";
+// import { Submodule } from "../../../../../once.ts/dist/current/src/unsorted/Submodule.js";
 
 export default class Create extends Command {
   static description = "create ucpComponent";
@@ -82,6 +82,6 @@ export default class Create extends Command {
     });
 
      
-    Submodule.addFromUrl({url:result.data.ssh_url});
+    // Submodule.addFromUrl({url:result.data.ssh_url});
   }
 }
