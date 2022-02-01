@@ -2,10 +2,14 @@
   "name": "once.cli",
   "namespace": "tla.EAM",
   "version": "0.0.1",
-  "main": "index.js",
-  "scripts": {
-    "prepare": "ts-patch install",
-    "build:version": "tsc -p tsconfig.build.json"
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "once.cli": "bin/run.js",
+    "once": "bin/run.js"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -17,9 +21,36 @@
     "url": "https://github.com/ONCE-DAO/once.cli/issues"
   },
   "homepage": "https://github.com/ONCE-DAO/once.cli#readme",
+  "files": [
+    "/bin"
+  ],
+  "dependencies": {
+    "@octokit/rest": "^18.12.0",
+    "@typhonjs-fvtt/validate-manifest": "0.0.0",
+    "@typhonjs-oclif-rollup/plugin-bundle-core": "^0.0.4",
+    "@typhonjs-oclif/core": "^0.0.21",
+    "@typhonjs-oclif/errors": "^0.0.0",
+    "@typhonjs-utils/better-ajv-errors": "^0.0.9",
+    "inquirer": "^8.2.0",
+    "open": "^8.4.0"
+  },
   "devDependencies": {
-    "ts-node": "^10.4.0",
-    "ts-patch": "^2.0.1",
-    "typescript": "^4.5.5"
+    "@oclif/dev-cli": "^1.26.0",
+    "@types/inquirer": "^8.2.0",
+    "@typhonjs-utils/build-test": "^0.1.0"
+  },
+  "oclif": {
+    "commands": "./dist/commands",
+    "bin": "once"
+  },
+  "scripts": {
+    "build:version": "tsc -p tsconfig.build.json",
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "posttest": "yarn lint",
+    "prepack": "yarn build && oclif manifest && oclif readme",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif readme && git add README.md"
   }
 }
