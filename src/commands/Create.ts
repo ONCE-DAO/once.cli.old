@@ -82,6 +82,6 @@ export default class Create extends Command {
     });
 
      
-    Submodule.addFromUrl(result.data.ssh_url);
+    Submodule.addFromUrl({url:result.data.ssh_url});
   }
 }
