@@ -83,7 +83,11 @@ export default class Create extends Command {
       owner: answer.owner,
     });
 
-     
-    Submodule.addFromUrl({url:result.data.ssh_url, overwrite:{name:componentName,namespace:nameSpace.join('.')}});
+    (
+      await Submodule.addFromUrl({
+        url: result.data.ssh_url,
+        overwrite: { name: componentName, namespace: nameSpace.join(".") },
+      })
+    ).build();
   }
 }
