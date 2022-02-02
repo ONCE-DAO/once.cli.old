@@ -2,7 +2,9 @@ import { Command, Flags } from "@oclif/core";
 import { Octokit } from "@octokit/rest";
 import fs from "fs";
 import inquirer from "inquirer";
-// import { Submodule } from "../../../../../once.ts/dist/current/src/unsorted/Submodule.js";
+import open from "open";
+
+import { Submodule } from "../../../../../once.ts/dist/current/src/2_systems/Git/Submodule.class.js";
 
 export default class Create extends Command {
   static description = "create ucpComponent";
@@ -37,9 +39,9 @@ export default class Create extends Command {
         },
       ]);
 
-      // answer.tokenExist == "nein" &&
-      //   open("https://github.com/settings/tokens/new");
-      // console.log("DDD", answer);
+      answer.tokenExist == "nein" &&
+        open("https://github.com/settings/tokens/new");
+      console.log("DDD", answer);
 
       answer = await inquirer.prompt([
         {
@@ -82,6 +84,6 @@ export default class Create extends Command {
     });
 
      
-    // Submodule.addFromUrl({url:result.data.ssh_url});
+    Submodule.addFromUrl({url:result.data.ssh_url, overwrite:{name:componentName,namespace:nameSpace.join('.')}});
   }
 }

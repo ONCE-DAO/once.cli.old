@@ -31,14 +31,14 @@
     "@typhonjs-oclif/core": "^0.0.21",
     "@typhonjs-oclif/errors": "^0.0.0",
     "@typhonjs-utils/better-ajv-errors": "^0.0.9",
-    "inquirer": "^8.2.0",
-    "open": "^8.4.0"
+    "inquirer": "^8.2.0"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.26.0",
     "@types/inquirer": "^8.2.0",
     "@typhonjs-utils/build-test": "^0.1.0",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "open": "^8.4.0"
   },
   "oclif": {
     "commands": "./src/commands",
