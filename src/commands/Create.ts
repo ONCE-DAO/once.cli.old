@@ -4,7 +4,7 @@ import fs from "fs";
 import inquirer from "inquirer";
 import open from "open";
 
-import { Submodule } from "../../../../../once.ts/dist/current/src/2_systems/Git/Submodule.class.js";
+// import { Submodule } from "../../../../../once.ts/dist/current/src/2_systems/Git/Submodule.class.js";
 
 export default class Create extends Command {
   static description = "create ucpComponent";
@@ -83,11 +83,11 @@ export default class Create extends Command {
       owner: answer.owner,
     });
 
-    (
-      await Submodule.addFromUrl({
-        url: result.data.ssh_url,
-        overwrite: { name: componentName, namespace: nameSpace.join(".") },
-      })
-    ).build();
+    // (
+    //   await Submodule.addFromUrl({
+    //     url: result.data.ssh_url,
+    //     overwrite: { name: componentName, namespace: nameSpace.join(".") },
+    //   })
+    // ).build();
   }
 }
