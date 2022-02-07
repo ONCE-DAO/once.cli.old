@@ -46,8 +46,6 @@
   },
   "scripts": {
     "link": "npm link",
-    "build:tsc": "tsc -p tsconfig.build.json",
-    "build:version": "npm-run-all build:tsc",
     "build:version:after": "npm link"
   }
 }
