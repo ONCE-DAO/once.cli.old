@@ -1,13 +1,12 @@
-import * as oclif from "@oclif/core";
-import { finallyHandler } from "@typhonjs-oclif/core";
+import { run } from "@oclif/core";
+
 /**
- * Invokes the `fvttdev` CLI with args programmatically. Deletes any environment variables loaded from before to after
- * execution.
+ * Invokes the `once.cli` CLI with args programmatically.
  *
  * @param {...string} args - args to pass to CLI.
  *
  * @returns {Promise<void>}
  */
-export default async function once(...args: any[]) {
-  return oclif.run(args, import.meta.url).finally(finallyHandler);
+export default async function oncecli(...args: any) {
+  return run(args, import.meta.url);
 }

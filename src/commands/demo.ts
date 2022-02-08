@@ -1,6 +1,6 @@
 import {Command, Flags} from '@oclif/core'
 
-export default class TestCommand extends Command {
+export default class Demo extends Command {
   static description = 'describe the command here'
 
   static examples = [
@@ -17,10 +17,10 @@ export default class TestCommand extends Command {
   static args = [{name: 'file'}]
 
   public async run(): Promise<void> {
-    const {args, flags} = await this.parse(TestCommand)
+    const {args, flags} = await this.parse(Demo)
 
     const name = flags.name ?? 'world'
-    this.log(`hello ${name} from /Users/philippbartels/EAMD.ucp/Components/tla/EAM/once.cli/dev/once.cli@main/src/commands/TestCommand.ts`)
+    this.log(`hello ${name} from /Users/philippbartels/tmp/oncecli/src/commands/demo.ts`)
     if (args.file && flags.force) {
       this.log(`you input --force and --file: ${args.file}`)
     }
