@@ -1,6 +1,7 @@
 import { Command, Flags } from "@oclif/core";
 import { Octokit } from "@octokit/rest";
 import inquirer from "inquirer";
+import open from "open";
 export default class ComponentCreateGithub extends Command {
   static description = "describe the command here";
 
@@ -25,15 +26,17 @@ export default class ComponentCreateGithub extends Command {
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(ComponentCreateGithub);
     const { componentName, packageName } = this.getComponentNames(args.name);
-    !ComponentCreateGithub.githubToken && (await ComponentCreateGithub.enterTokenPrompt());
+    !ComponentCreateGithub.githubToken &&
+      (await ComponentCreateGithub.enterTokenPrompt());
     const octokit: Octokit = ComponentCreateGithub.loginTothis();
     let owner = await ComponentCreateGithub.promptComponentOwner(octokit);
 
-    const gitRepoUrl: string = await ComponentCreateGithub.createComponentRepository(
-      octokit,
-      componentName,
-      owner
-    );
+    const gitRepoUrl: string =
+      await ComponentCreateGithub.createComponentRepository(
+        octokit,
+        componentName,
+        owner
+      );
 
     !flags.createOnly &&
       (await this.addSubmodule(gitRepoUrl, componentName, packageName));
@@ -56,7 +59,7 @@ export default class ComponentCreateGithub extends Command {
     ).default;
 
     const once = global.ONCE ? global.ONCE : await Once.start();
-
+console.log(componentName,packageName)
     const module = await Submodule.addFromRemoteUrl({
       once,
       url: gitRepoUrl,
@@ -70,9 +73,6 @@ export default class ComponentCreateGithub extends Command {
     const componentName = split.pop() || "";
     return { componentName, packageName: split.join(".") };
   }
-
-
-
 
   public static async promptComponentOwner(octokit: Octokit): Promise<string> {
     return (
@@ -163,6 +163,6 @@ export default class ComponentCreateGithub extends Command {
         name: componentName,
         owner: owner,
       })
-    ).data.ssh_url;
+    ).data.html_url;
   }
 }
