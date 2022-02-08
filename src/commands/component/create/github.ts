@@ -60,7 +60,7 @@ export default class ComponentCreateGithub extends Command {
 
     const once = global.ONCE ? global.ONCE : await Once.start();
 console.log(componentName,packageName)
-    const module = await Submodule.addFromRemoteUrl({
+    const module = await Submodule.getOrAddFromRemoteUrl({
       once,
       url: gitRepoUrl,
       overwrite: { name: componentName, namespace: packageName },
